@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ballwhisperer.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f2ec;
+      --warm-white: #faf9f6;
+      --ink: #1e1c18;
+      --muted: #7a7568;
+      --accent: #3d5a3e;
+      --accent-light: #6b8f6c;
+      --border: #ddd8ce;
+      --tab-active: #1e1c18;
+    }
+
+    body {
+      background: var(--warm-white);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 48px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+
+    .logo-wrap img {
+      width: 260px;
+      height: auto;
+      display: block;
+    }
+
+    /* ── NAV TABS ── */
+    nav {
+      display: flex;
+      gap: 0;
+      margin-top: 4px;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 12px 32px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      position: relative;
+      top: 1px;
+    }
+
+    nav button:hover { color: var(--ink); }
+    nav button.active {
+      color: var(--tab-active);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── HERO SECTION ── */
+    .hero {
+      text-align: center;
+      padding: 64px 48px 48px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero h2 {
+      font-family: 'Jost', sans-serif;
+      font-size: clamp(0.88rem, 2vw, 1.05rem);
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto;
+      letter-spacing: 0.02em;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--accent-light);
+      margin: 32px auto;
+      opacity: 0.6;
+    }
+
+    /* ── CONTENT AREA ── */
+    .content-area {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 16px 48px 80px;
+    }
+
+    /* ── TAB PANELS ── */
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeIn 0.35s ease; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── ABOUT PANEL ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 8px;
+    }
+
+    .about-block {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+    }
+
+    .about-block .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .about-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+
+    .about-block p {
+      font-size: 0.93rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .philosophy-strip {
+      background: var(--accent);
+      color: var(--warm-white);
+      padding: 40px 48px;
+      margin: 40px -48px;
+      text-align: center;
+    }
+
+    .philosophy-strip p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto;
+      opacity: 0.95;
+    }
+
+    /* ── SPORT PANELS (Tennis / Pickleball) ── */
+    .sport-intro {
+      margin-bottom: 40px;
+    }
+
+    .sport-intro p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .tip-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .tip-list li {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 28px 32px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .tip-list li:hover { border-color: var(--accent-light); }
+
+    .tip-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--accent-light);
+      line-height: 1;
+      padding-top: 2px;
+    }
+
+    .tip-body .tip-title {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .tip-body p {
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── CLASSIFIED PANEL ── */
+    .classifieds-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 28px;
+    }
+
+    .classifieds-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+    }
+
+    .classifieds-header span {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .classified-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .classified-card {
+      border: 1px solid var(--border);
+      background: var(--cream);
+      padding: 28px 28px 24px;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--accent-light);
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .classified-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .classified-card p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .card-price {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .card-contact {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      cursor: pointer;
+      border-bottom: 1px solid var(--accent-light);
+      padding-bottom: 2px;
+    }
+
+    .post-ad-btn {
+      display: block;
+      margin: 36px auto 0;
+      background: none;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .post-ad-btn:hover { background: var(--accent); color: var(--warm-white); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      background: var(--cream);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      header { padding: 24px 20px 0; }
+      .hero { padding: 40px 20px 32px; }
+      .content-area { padding: 16px 20px 60px; }
+      .about-grid, .classified-grid { grid-template-columns: 1fr; }
+      nav button { padding: 12px 16px; font-size: 11px; }
+      .philosophy-strip { margin: 40px -20px; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <img src="data:image/jpeg;base64,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" alt="Ballwhisperer.com logo" />
+  </div>
+
+  <nav>
+    <button class="active" onclick="showTab('about')">About</button>
+    <button onclick="showTab('tennis')">Tennis</button>
+    <button onclick="showTab('pickleball')">Pickleball</button>
+    <button onclick="showTab('classified')">Classified</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h1><em>Balance.</em> Presence. <em>Execution.</em></h1>
+  <div class="divider"></div>
+  <h2>Tricks to silence the mind and position your feet to optimize balance thus leading to hitting the ball with confidence</h2>
+</div>
+
+<!-- CONTENT -->
+<div class="content-area">
+
+  <!-- ── ABOUT ── -->
+  <div id="tab-about" class="panel active">
+    <div class="about-grid">
+      <div class="about-block">
+        <p class="label">Our Philosophy</p>
+        <h3>The Ball Knows</h3>
+        <p>Every ball holds a secret conversation. The Ballwhisperer approach teaches you to listen — not just with your racket or paddle, but with your whole body. When your feet are rooted and your mind is quiet, the answer always comes.</p>
+      </div>
+      <div class="about-block">
+        <p class="label">Who We Are</p>
+        <h3>Coaches & Believers</h3>
+        <p>We're a community of tennis and pickleball players who believe that mental stillness and physical balance are the two most underrated weapons in any sport. You have more in you than you think.</p>
+      </div>
+      <div class="about-block">
+        <p class="label">The Method</p>
+        <h3>Presence First</h3>
+        <p>Before technique, before tactics — presence. We guide players through mindset practices and footwork drills that build unshakeable confidence from the ground up. Trust the process and watch yourself surprise yourself.</p>
+      </div>
+      <div class="about-block">
+        <p class="label">The Community</p>
+        <h3>Play Together, Grow Together</h3>
+        <p>The Ballwhisperer community spans courts worldwide. Share tips, post classifieds, and connect with players who share your love for the game and your hunger to keep getting better. You belong here.</p>
+      </div>
+    </div>
+
+    <div class="philosophy-strip">
+      <p>"Silence the chatter, trust your feet, and the ball will go exactly where you intend. You've always had this ability — it just needed room to breathe."</p>
+    </div>
+  </div>
+
+  <!-- ── TENNIS ── -->
+  <div id="tab-tennis" class="panel">
+    <div class="sport-intro">
+      <p>Tennis is a game of inches and intentions. These are the core principles we return to again and again — simple ideas that silence the overthinking mind and bring your body back to its natural brilliance.</p>
+    </div>
+    <ul class="tip-list">
+      <li>
+        <span class="tip-num">01</span>
+        <div class="tip-body">
+          <div class="tip-title">The Split Step</div>
+          <p>A small, soft hop as your opponent makes contact resets your balance and allows your feet to react instinctively. This single habit transforms your court coverage — and your confidence — overnight.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">02</span>
+        <div class="tip-body">
+          <div class="tip-title">Watch the Ball, Not the Court</div>
+          <p>Train your eyes to stay locked on the ball through contact. When your gaze wanders to where you want the ball to go, your body tenses. Stay present, watch the seams, and let the shot emerge naturally.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">03</span>
+        <div class="tip-body">
+          <div class="tip-title">Exhale Through the Hit</div>
+          <p>A sharp exhale at contact relaxes your grip, releases tension in your shoulders, and grounds your swing. Breathe out, and the racket finds its own way through the ball. Try it once — you'll feel the difference immediately.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">04</span>
+        <div class="tip-body">
+          <div class="tip-title">Low Center of Gravity</div>
+          <p>Bend your knees early, before the ball bounces. A low stance gives you options — you can drive through the ball, absorb pace, or change direction. Great tennis is played from below the hips, not above them.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">05</span>
+        <div class="tip-body">
+          <div class="tip-title">Reset Between Every Point</div>
+          <p>Walk to the baseline with intention. Bounce the ball twice. Breathe. The best players in the world don't carry the last point — they bury it and begin again. You can do this too, and it will change your game.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── PICKLEBALL ── -->
+  <div id="tab-pickleball" class="panel">
+    <div class="sport-intro">
+      <p>Pickleball rewards patience, soft hands, and smart positioning above all else. These principles will help you slow the game down mentally — so your body can move fast when it needs to.</p>
+    </div>
+    <ul class="tip-list">
+      <li>
+        <span class="tip-num">01</span>
+        <div class="tip-body">
+          <div class="tip-title">Get to the Kitchen</div>
+          <p>The non-volley zone line is your destination on every rally. The player who controls the kitchen controls the game. Move forward with purpose after every third shot, and you'll win more points than you ever imagined.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">02</span>
+        <div class="tip-body">
+          <div class="tip-title">The Dink is Your Friend</div>
+          <p>Resist the urge to attack every ball. A well-placed dink forces your opponents out of balance. Patience is a weapon — and when you finally do attack, it will mean so much more. Trust the soft game.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">03</span>
+        <div class="tip-body">
+          <div class="tip-title">Reset Your Paddle Position</div>
+          <p>Between shots, return your paddle to center — neutral, relaxed, ready. Tension in the grip kills touch. Loosen your hold, keep the paddle up, and you'll react to anything the other side throws your way.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">04</span>
+        <div class="tip-body">
+          <div class="tip-title">Play Your Feet First</div>
+          <p>Good pickleball is footwork before paddle work. If you're reaching for a ball, your feet have failed you. Practice moving to the ball early, setting your stance, and letting the swing be an afterthought. The ball will thank you.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">05</span>
+        <div class="tip-body">
+          <div class="tip-title">Silence the Scoreboard</div>
+          <p>The score is just information. Every point is its own universe — it doesn't know the last one happened. When you play each rally fresh, free from the weight of the scoreboard, you unlock a performance level that surprises even you.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── CLASSIFIED ── -->
+  <div id="tab-classified" class="panel">
+    <div class="classifieds-header">
+      <h3>Community Classifieds</h3>
+      <span>Equipment · Lessons · Partners</span>
+    </div>
+    <div class="classified-grid">
+      <div class="classified-card">
+        <span class="card-tag">Tennis · Equipment</span>
+        <h4>Wilson Pro Staff 97 — Excellent Condition</h4>
+        <p>Barely used, strung with Luxilon ALU Power at 52 lbs. Grip size 4¼. Perfect for the intermediate-to-advanced player looking to upgrade their confidence on the court.</p>
+        <div class="card-footer">
+          <span class="card-price">$145</span>
+          <span class="card-contact">Contact Seller</span>
+        </div>
+      </div>
+      <div class="classified-card">
+        <span class="card-tag">Pickleball · Lessons</span>
+        <h4>Private Pickleball Coaching — All Levels</h4>
+        <p>USAPA-certified coach with 8 years experience offering one-on-one lessons. Specialty: kitchen game, dinking consistency, and mental reset strategies. Morning slots available.</p>
+        <div class="card-footer">
+          <span class="card-price">$75 / hr</span>
+          <span class="card-contact">Book Now</span>
+        </div>
+      </div>
+      <div class="classified-card">
+        <span class="card-tag">Tennis · Partner Wanted</span>
+        <h4>3.5 NTRP Looking for Weekly Hit</h4>
+        <p>Consistent, friendly player seeking a hitting partner for weekend mornings. Located in the Bay Area. I bring the balls, you bring the good vibes. Let's push each other forward.</p>
+        <div class="card-footer">
+          <span class="card-price">Free</span>
+          <span class="card-contact">Connect</span>
+        </div>
+      </div>
+      <div class="classified-card">
+        <span class="card-tag">Pickleball · Equipment</span>
+        <h4>Selkirk Vanguard Power Air — Gen 2</h4>
+        <p>Used for one season. No edge damage, grip still tacky. Ideal for the player who wants more pop without sacrificing control. A paddle worth believing in.</p>
+        <div class="card-footer">
+          <span class="card-price">$110</span>
+          <span class="card-contact">Contact Seller</span>
+        </div>
+      </div>
+    </div>
+    <button class="post-ad-btn">Post a Classified</button>
+  </div>
+
+</div><!-- end content-area -->
+
+<footer>
+  &copy; 2025 Ballwhisperer.com &nbsp;·&nbsp; Balance. Presence. Execution.
+</footer>
+
+<script>
+  function showTab(name) {
+    // hide all panels
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    // deactivate all buttons
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    // show chosen panel + activate button
+    document.getElementById('tab-' + name).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+</script>
+</body>
+</html>
