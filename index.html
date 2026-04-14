@@ -62,7 +62,7 @@
       background: none;
       border: none;
       border-bottom: 3px solid transparent;
-      padding: 12px 32px;
+      padding: 12px 28px;
       font-family: 'Jost', sans-serif;
       font-size: 13px;
       font-weight: 400;
@@ -191,7 +191,7 @@
       opacity: 0.95;
     }
 
-    /* ── SPORT PANELS (Tennis / Pickleball) ── */
+    /* ── SPORT PANELS ── */
     .sport-intro {
       margin-bottom: 40px;
     }
@@ -348,6 +348,62 @@
 
     .post-ad-btn:hover { background: var(--accent); color: var(--warm-white); }
 
+    /* ── REVIEWS PANEL ── */
+    .reviews-intro {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .reviews-intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    .wordcloud-wrap {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 32px 16px 24px;
+      margin-bottom: 40px;
+    }
+
+    .wordcloud-wrap svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .reviews-coming {
+      border: 1px dashed var(--border);
+      padding: 40px 32px;
+      text-align: center;
+      background: var(--cream);
+    }
+
+    .reviews-coming .rc-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .reviews-coming p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -365,7 +421,7 @@
       .hero { padding: 40px 20px 32px; }
       .content-area { padding: 16px 20px 60px; }
       .about-grid, .classified-grid { grid-template-columns: 1fr; }
-      nav button { padding: 12px 16px; font-size: 11px; }
+      nav button { padding: 12px 14px; font-size: 11px; letter-spacing: 0.08em; }
       .philosophy-strip { margin: 40px -20px; padding: 32px 24px; }
     }
   </style>
@@ -381,6 +437,7 @@
     <button class="active" onclick="showTab('about')">About</button>
     <button onclick="showTab('tennis')">Tennis</button>
     <button onclick="showTab('pickleball')">Pickleball</button>
+    <button onclick="showTab('reviews')">Reviews</button>
     <button onclick="showTab('classified')">Classified</button>
   </nav>
 </header>
@@ -401,15 +458,13 @@
       <div class="about-block">
        <p class="label">Who We Are</p>
         <h3>Tim Handley</h3>
-        <p>At age 60, my USTA rating, DUPR rating, and golf handicap all sit in the 5 range. I still whisper to all those balls with love and passion and believe I hear them whisper back. While I coached 7 high school girls tennis teams, the bulk of my coaching cycles through the years was in the form of mentoring exceptional junior tennis players, often nationally ranked. For me, seeing improvement catalyzed by my participation is one of my life's greatest joys.</p>
-      
+        <p>At age 60, my USTA rating, DUPR rating, and golf handicap all sit in the 5 range. I still whisper to all those balls with love and passion and believe I hear them whisper back. While I coached 7 high school girls tennis teams, the bulk of my coaching cycles through the years was in the form of mentoring exceptional junior players, often nationally ranked. For me, seeing improvement catalyzed by my participation is one of my life's greatest joys.</p>
       </div>
       <div class="about-block">
-		<p class="label">Our Philosophy</p>
-		 <h3>Your Sherpa</h3>
-		
-		        <p>The ball has lots of stuff going on.  It has velocity, spin, trajectory, and a rebound coefficient (how bouncy the ball and paddle are together) that all have a huge effect on the outcome of your ball strike.
-				Navigating all of this to produce good shots is essentially what experience will deliver to all of us.  But for those who don't want to wait for that deliverance, getting quality guidance will get you there faster.  </p>
+        <p class="label">Our Philosophy</p>
+        <h3>Your Sherpa</h3>
+        <p>The ball has lots of stuff going on.  It has velocity, spin, trajectory, and a rebound coefficient (how bouncy the ball and paddle are together) that all have a huge effect on the outcome of your ball strike.
+        Navigating all of this to produce good shots is essentially what experience will deliver to all of us.  But for those who don't want to wait for that deliverance, getting quality guidance will get you there faster.</p>
       </div>       
       <div class="about-block">
         <p class="label">A Typical Session</p>
@@ -433,43 +488,12 @@
     <div class="sport-intro">
       <p>Tennis is a game of inches and intentions. These are the core principles we return to again and again — simple ideas that silence the overthinking mind and bring your body back to its natural brilliance.</p>
     </div>
-    <ul class="tip-list">
-      <li>
-        <span class="tip-num">01</span>
-        <div class="tip-body">
-          <div class="tip-title">The Split Step</div>
-          <p>A small, soft hop as your opponent makes contact resets your balance and allows your feet to react instinctively. This single habit transforms your court coverage — and your confidence — overnight.</p>
-        </div>
-      </li>
-      <li>
-        <span class="tip-num">02</span>
-        <div class="tip-body">
-          <div class="tip-title">Watch the Ball, Not the Court</div>
-          <p>Train your eyes to stay locked on the ball through contact. When your gaze wanders to where you want the ball to go, your body tenses. Stay present, watch the seams, and let the shot emerge naturally.</p>
-        </div>
-      </li>
-      <li>
-        <span class="tip-num">03</span>
-        <div class="tip-body">
-          <div class="tip-title">Exhale Through the Hit</div>
-          <p>A sharp exhale at contact relaxes your grip, releases tension in your shoulders, and grounds your swing. Breathe out, and the racket finds its own way through the ball. Try it once — you'll feel the difference immediately.</p>
-        </div>
-      </li>
-      <li>
-        <span class="tip-num">04</span>
-        <div class="tip-body">
-          <div class="tip-title">Low Center of Gravity</div>
-          <p>Bend your knees early, before the ball bounces. A low stance gives you options — you can drive through the ball, absorb pace, or change direction. Great tennis is played from below the hips, not above them.</p>
-        </div>
-      </li>
-      <li>
-        <span class="tip-num">05</span>
-        <div class="tip-body">
-          <div class="tip-title">Reset Between Every Point</div>
-          <p>Walk to the baseline with intention. Bounce the ball twice. Breathe. The best players in the world don't carry the last point — they bury it and begin again. You can do this too, and it will change your game.</p>
-        </div>
-      </li>
-    </ul>
+    <p></p>
+    <p>Tennis has a very combative quality to it. Thus some very deep parts of our brain are triggered which gives us the opportunity to confront and transcend our egos on a point by point basis. We are challenged to be detached from the outcome in favor of the process, yet it is next to impossible to do.</p>
+    <p></p>
+    <p>The fitness delivered for those that play tennis regularly comes very easy.  When running after a ball with your ego at stake make you forget how gassed and tired you are. Basically free exercise, free endorphins, and it has been reported in some studies that folks who play tennis regularly have a life expectancy 10 years over the average.</p>
+    <p></p>
+    <p>The sweetspot in tennis is highly satisfying, thus learning how to get as many sweet hits as possible rewards those with this objective.  It's not quite golf in terms of conveyed mechanical advantage, but it is better than most ball hitting sports.</p>
   </div>
 
   <!-- ── PICKLEBALL ── -->
@@ -516,6 +540,63 @@
     </ul>
   </div>
 
+  <!-- ── REVIEWS ── -->
+  <div id="tab-reviews" class="panel">
+    <div class="reviews-intro">
+      <p>What students and players say — the words that matter most.</p>
+    </div>
+
+    <div class="wordcloud-wrap">
+      <svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>
+            .wc text { cursor: default; transition: opacity 0.2s; font-family: 'Cormorant Garamond', Georgia, serif; }
+            .wc text:hover { opacity: 0.65; }
+          </style>
+        </defs>
+        <g class="wc">
+          <!-- Tier 1 — largest -->
+          <text x="380" y="118" text-anchor="middle" font-size="58" font-weight="600" fill="#3d5a3e" opacity="0.92">fun</text>
+          <text x="200" y="195" text-anchor="middle" font-size="46" font-weight="500" fill="#2e4a2f" opacity="0.88">progressing</text>
+          <text x="560" y="180" text-anchor="middle" font-size="46" font-weight="500" fill="#4a7a4b" opacity="0.88">passionate</text>
+
+          <!-- Tier 2 -->
+          <text x="380" y="228" text-anchor="middle" font-size="38" font-weight="500" fill="#6b8f6c" opacity="0.85">talented</text>
+          <text x="115" y="265" text-anchor="middle" font-size="34" font-weight="500" fill="#1e3d1f" opacity="0.85">recommend</text>
+          <text x="640" y="255" text-anchor="middle" font-size="34" font-weight="500" fill="#3d6640" opacity="0.85">improvement</text>
+
+          <!-- Tier 3 -->
+          <text x="380" y="290" text-anchor="middle" font-size="30" font-weight="500" fill="#294d2a" opacity="0.82">by feel</text>
+          <text x="168" y="148" text-anchor="middle" font-size="27" font-weight="400" fill="#5a8a5c" opacity="0.80">learning</text>
+          <text x="590" y="130" text-anchor="middle" font-size="27" font-weight="400" fill="#3d7a3e" opacity="0.80">intuition</text>
+          <text x="100" y="320" text-anchor="middle" font-size="24" font-weight="400" fill="#2e5a30" opacity="0.78">skill</text>
+          <text x="655" y="310" text-anchor="middle" font-size="24" font-weight="400" fill="#4a6b4c" opacity="0.78">presence</text>
+
+          <!-- Tier 4 -->
+          <text x="258" y="335" text-anchor="middle" font-size="22" font-weight="400" fill="#6b8f6c" opacity="0.75">easy to learn</text>
+          <text x="510" y="338" text-anchor="middle" font-size="22" font-weight="400" fill="#3d5a3e" opacity="0.75">refreshing</text>
+          <text x="380" y="358" text-anchor="middle" font-size="20" font-weight="400" fill="#7a9e7b" opacity="0.72">balance</text>
+          <text x="150" y="358" text-anchor="middle" font-size="19" font-weight="400" fill="#4a7a4b" opacity="0.70">encouraging</text>
+          <text x="620" y="358" text-anchor="middle" font-size="19" font-weight="400" fill="#294d2a" opacity="0.70">personable</text>
+
+          <!-- Tier 5 — smallest -->
+          <text x="68" y="185" text-anchor="middle" font-size="17" font-weight="400" fill="#8aaa8b" opacity="0.67">professional</text>
+          <text x="695" y="195" text-anchor="middle" font-size="17" font-weight="400" fill="#5a8a5c" opacity="0.67">outstanding</text>
+          <text x="52" y="130" text-anchor="middle" font-size="15" font-weight="400" fill="#6b8f6c" opacity="0.64">rare</text>
+          <text x="706" y="130" text-anchor="middle" font-size="15" font-weight="400" fill="#4a6b4c" opacity="0.64">care</text>
+          <text x="215" y="72" text-anchor="middle" font-size="15" font-weight="400" fill="#3d7a3e" opacity="0.64">joy</text>
+          <text x="540" y="68" text-anchor="middle" font-size="15" font-weight="400" fill="#2e5a30" opacity="0.64">kids</text>
+          <text x="380" y="52" text-anchor="middle" font-size="14" font-weight="400" fill="#8aaa8b" opacity="0.60">greatest teachers</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="reviews-coming">
+      <p class="rc-label">More on the way</p>
+      <p>Reviews are being gathered — check back soon. In the meantime, come hit some balls and write the next one yourself.</p>
+    </div>
+  </div>
+
   <!-- ── CLASSIFIED ── -->
   <div id="tab-classified" class="panel">
     <div class="classifieds-header">
@@ -535,7 +616,7 @@
       <div class="classified-card">
         <span class="card-tag">Pickleball · Lessons</span>
         <h4>Private Pickleball Coaching — All Levels</h4>
-        <p>USAPA-certified coach with 8 years experience offering one-on-one lessons. Specialty: kitchen game, dinking consistency, and mental reset strategies. Morning slots available.</p>
+        <p>USAPA-certified coach with 8 years experience offering one-on-one sessions. Specialty: kitchen game, dinking consistency, and mental reset strategies. Morning slots available.</p>
         <div class="card-footer">
           <span class="card-price">$75 / hr</span>
           <span class="card-contact">Book Now</span>
@@ -571,11 +652,8 @@
 
 <script>
   function showTab(name) {
-    // hide all panels
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    // deactivate all buttons
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    // show chosen panel + activate button
     document.getElementById('tab-' + name).classList.add('active');
     event.currentTarget.classList.add('active');
   }
