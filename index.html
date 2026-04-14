@@ -348,6 +348,123 @@
 
     .post-ad-btn:hover { background: var(--accent); color: var(--warm-white); }
 
+    /* ── BOOK NOW BUTTON ── */
+    .book-now-btn {
+      display: block;
+      margin: 40px auto 0;
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: var(--warm-white);
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 16px 48px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .book-now-btn:hover { background: #2e4530; border-color: #2e4530; }
+
+    /* ── CONTACT PANEL ── */
+    .contact-intro {
+      margin-bottom: 36px;
+    }
+    .contact-intro p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 620px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-row label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus { border-color: var(--accent-light); }
+    .form-row textarea { min-height: 120px; resize: vertical; }
+    .submit-btn {
+      background: var(--accent);
+      border: none;
+      color: var(--warm-white);
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+    .submit-btn:hover { background: #2e4530; }
+    .submit-btn:disabled { opacity: 0.6; cursor: default; }
+    .form-success {
+      display: none;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 32px;
+    }
+    .form-success p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--accent);
+      line-height: 1.7;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-info-block {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 28px 28px;
+    }
+    .contact-info-block .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .contact-info-block p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
     /* ── REVIEWS PANEL ── */
     .reviews-intro {
       text-align: center;
@@ -439,6 +556,7 @@
     <button onclick="showTab('pickleball')">Pickleball</button>
     <button onclick="showTab('reviews')">Reviews</button>
     <button onclick="showTab('classified')">Classified</button>
+    <button onclick="showTab('contact')">Contact</button>
   </nav>
 </header>
 
@@ -499,45 +617,68 @@
   <!-- ── PICKLEBALL ── -->
   <div id="tab-pickleball" class="panel">
     <div class="sport-intro">
-      <p>Pickleball rewards patience, soft hands, and smart positioning above all else. These principles will help you slow the game down mentally — so your body can move fast when it needs to.</p>
+      <p>Pickleball is far more accessible than tennis, and uniquely friendly to players of different skill levels — which is exactly why it's the fastest growing sport in America, and it isn't close.</p>
+      <p style="margin-top: 16px;">Here are the vital skills you will develop working with Tim:</p>
     </div>
     <ul class="tip-list">
       <li>
         <span class="tip-num">01</span>
         <div class="tip-body">
-          <div class="tip-title">Get to the Kitchen</div>
-          <p>The non-volley zone line is your destination on every rally. The player who controls the kitchen controls the game. Move forward with purpose after every third shot, and you'll win more points than you ever imagined.</p>
+          <div class="tip-title">Basic Footwork</div>
+          <p>No skill simplifies the game more than footwork. Players who skip it compensate by swinging harder — which is far less repeatable than using the feet and torso to set up every shot.</p>
         </div>
       </li>
       <li>
         <span class="tip-num">02</span>
         <div class="tip-body">
           <div class="tip-title">The Dink is Your Friend</div>
-          <p>Resist the urge to attack every ball. A well-placed dink forces your opponents out of balance. Patience is a weapon — and when you finally do attack, it will mean so much more. Trust the soft game.</p>
+          <p>Ironically the most accessible shot for beginners, yet a genuine challenge for tennis players conditioned to drive through the ball. The dink has the smallest margin of error in the game — which is exactly why learning its technique pays off so quickly and so well.</p>
         </div>
       </li>
       <li>
         <span class="tip-num">03</span>
         <div class="tip-body">
-          <div class="tip-title">Reset Your Paddle Position</div>
-          <p>Between shots, return your paddle to center — neutral, relaxed, ready. Tension in the grip kills touch. Loosen your hold, keep the paddle up, and you'll react to anything the other side throws your way.</p>
+          <div class="tip-title">The Drive</div>
+          <p>Many players take <em>the long and winding road</em> with their backswing — a habit that is deeply counter-productive and quietly ruins footwork at the same time. We address this early, and the results tend to be immediate.</p>
         </div>
       </li>
       <li>
         <span class="tip-num">04</span>
         <div class="tip-body">
-          <div class="tip-title">Play Your Feet First</div>
-          <p>Good pickleball is footwork before paddle work. If you're reaching for a ball, your feet have failed you. Practice moving to the ball early, setting your stance, and letting the swing be an afterthought. The ball will thank you.</p>
+          <div class="tip-title">The Serve</div>
+          <p>A high-leverage skill you can practice entirely on your own. Learn to mix velocity, trajectory, and spin to keep opponents perpetually off balance — before the rally even begins.</p>
         </div>
       </li>
       <li>
         <span class="tip-num">05</span>
         <div class="tip-body">
-          <div class="tip-title">Silence the Scoreboard</div>
-          <p>The score is just information. Every point is its own universe — it doesn't know the last one happened. When you play each rally fresh, free from the weight of the scoreboard, you unlock a performance level that surprises even you.</p>
+          <div class="tip-title">Preparation with Paddle</div>
+          <p>Second only to footwork in its impact on swing mechanics. Getting the paddle ready early is one of those adjustments that delivers visible improvement almost immediately — and it tends to surprise people.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">06</span>
+        <div class="tip-body">
+          <div class="tip-title">Topspin is a Must</div>
+          <p>Topspin allows you to swing more aggressively without the ball sailing out — a freedom that proves transformative for most students. Once you have it, you won't remember how you played without it.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">07</span>
+        <div class="tip-body">
+          <div class="tip-title">Specialty Shots</div>
+          <p>The offensive topspin lob, the defensive lob, the touch drop shot, the Around the Post — these shots change what's possible on the court. You'll learn not just how to hit them, but when to attempt them and why.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tip-num">08</span>
+        <div class="tip-body">
+          <div class="tip-title">The Inner Game of Pickleball</div>
+          <p>The most neglected dimension of most practice routines. Learning to manage the mind, emotions, ego, and even the cardiovascular system pays enormous dividends — and requires far less practice than people expect.</p>
         </div>
       </li>
     </ul>
+    <button class="book-now-btn" onclick="showTab('contact')">Book a Session</button>
   </div>
 
   <!-- ── REVIEWS ── -->
@@ -626,6 +767,76 @@
     <button class="post-ad-btn">Post a Classified</button>
   </div>
 
+  <!-- ── CONTACT ── -->
+  <div id="tab-contact" class="panel">
+    <div class="contact-intro">
+      <p>Ready to level up your game? Whether you're picking up a paddle for the first time or looking to sharpen a specific part of your game, reach out and let's make it happen. Sessions are available in the South Bay and beyond.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <form class="contact-form" id="contact-form">
+          <div class="form-row">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="First and last name" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-row">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="(408) 555-0100" />
+          </div>
+          <div class="form-row">
+            <label for="service">I'm interested in…</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select a sport</option>
+              <option>Tennis Sessions</option>
+              <option>Pickleball Sessions</option>
+              <option>Both Tennis &amp; Pickleball</option>
+              <option>Not sure yet — let's talk</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="level">Experience level</label>
+            <select id="level" name="level">
+              <option value="" disabled selected>Select your level</option>
+              <option>Complete beginner</option>
+              <option>Some experience</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="message">Anything else to share</label>
+            <textarea id="message" name="message" placeholder="Tell me about your goals, your game, or anything that feels relevant…"></textarea>
+          </div>
+          <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
+          <p id="form-error" style="display:none; color:#a04040; font-size:0.85rem; margin-top:8px;">Something went wrong — please try again or reach out directly.</p>
+        </form>
+        <div class="form-success" id="form-success">
+          <p>"Thank you — I'll be in touch soon. Something good is ahead."</p>
+        </div>
+      </div>
+      <div class="contact-info">
+        <div class="contact-info-block">
+          <p class="label">Location</p>
+          <p>Skypark · Willowbrook · Brommer · Cabrillo · Callahan Park</p>
+        </div>
+        <div class="contact-info-block">
+          <p class="label">Session Rates</p>
+          <p>Private &nbsp;·&nbsp; <strong style="color:var(--ink)">$80 / hr</strong><br/>
+          Semi-Private (up to 3) &nbsp;·&nbsp; <strong style="color:var(--ink)">$90 / hr</strong><br/><br/>
+          4-pack packages available at a discount — a great way to commit to the game and your own improvement.</p>
+        </div>
+        <div class="contact-info-block">
+          <p class="label">A Note</p>
+          <p>Every great player started exactly where you are right now. The best move you can make is simply to begin — the improvement that follows has a way of exceeding what you thought possible.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div><!-- end content-area -->
 
 <footer>
@@ -637,8 +848,42 @@
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + name).classList.add('active');
-    event.currentTarget.classList.add('active');
+    // find the nav button that matches
+    document.querySelectorAll('nav button').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + name + "'")) {
+        b.classList.add('active');
+      }
+    });
   }
+
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const errorMsg = document.getElementById('form-error');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    errorMsg.style.display = 'none';
+
+    const data = new FormData(form);
+    try {
+      const res = await fetch('https://formspree.io/f/maqanlpe', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+      errorMsg.style.display = 'block';
+    }
+  });
 </script>
 </body>
 </html>
