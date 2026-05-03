@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-QTFWSEPEK7');
 </script>
   <meta charset="UTF-8" />
@@ -504,31 +503,153 @@
       height: auto;
     }
 
-    .reviews-coming {
-      border: 1px dashed var(--border);
-      padding: 40px 32px;
-      text-align: center;
-      background: var(--cream);
+    /* ── REVIEW CARDS ── */
+    .review-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 48px;
     }
 
-    .reviews-coming .rc-label {
-      font-size: 11px;
-      letter-spacing: 0.18em;
+    .review-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 32px 36px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .review-card:hover { border-color: var(--accent-light); }
+
+    .review-card::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--accent-light);
+      opacity: 0.25;
+      position: absolute;
+      top: 12px;
+      left: 22px;
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+
+    .review-stars span {
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .review-sport-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      padding: 3px 10px;
+      border: 1px solid var(--accent-light);
       color: var(--accent);
       margin-bottom: 16px;
     }
 
-    .reviews-coming p {
+    .review-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
+      font-size: 1.08rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--ink);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .review-byline {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .review-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .review-avatar span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--warm-white);
+      line-height: 1;
+    }
+
+    .review-name {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .review-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+
+    .review-cta {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 36px 40px;
+      text-align: center;
+    }
+
+    .review-cta .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .review-cta p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
       font-weight: 300;
       font-style: italic;
       line-height: 1.7;
       color: var(--muted);
       max-width: 480px;
-      margin: 0 auto;
+      margin: 0 auto 24px;
     }
+
+    .review-cta a {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--warm-white);
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .review-cta a:hover { background: #2e4530; }
 
     /* ── FOOTER ── */
     footer {
@@ -546,9 +667,10 @@
       header { padding: 24px 20px 0; }
       .hero { padding: 40px 20px 32px; }
       .content-area { padding: 16px 20px 60px; }
-      .about-grid, .classified-grid { grid-template-columns: 1fr; }
+      .about-grid, .classified-grid, .contact-grid { grid-template-columns: 1fr; }
       nav button { padding: 12px 14px; font-size: 11px; letter-spacing: 0.08em; }
       .philosophy-strip { margin: 40px -20px; padding: 32px 24px; }
+      .review-card { padding: 28px 24px; }
     }
   </style>
 </head>
@@ -773,55 +895,174 @@
       <p>What students and players say — the words that matter most.</p>
     </div>
 
+    <!-- WORD CLOUD — drawn from actual review language -->
     <div class="wordcloud-wrap">
-      <svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <style>
             .wc text { cursor: default; transition: opacity 0.2s; font-family: 'Cormorant Garamond', Georgia, serif; }
-            .wc text:hover { opacity: 0.65; }
+            .wc text:hover { opacity: 0.55; }
           </style>
         </defs>
         <g class="wc">
-          <!-- Tier 1 — largest -->
-          <text x="380" y="118" text-anchor="middle" font-size="58" font-weight="600" fill="#3d5a3e" opacity="0.92">fun</text>
-          <text x="200" y="195" text-anchor="middle" font-size="46" font-weight="500" fill="#2e4a2f" opacity="0.88">progressing</text>
-          <text x="560" y="180" text-anchor="middle" font-size="46" font-weight="500" fill="#4a7a4b" opacity="0.88">passionate</text>
+          <!-- Tier 1 — dominant words, highest frequency/impact -->
+          <text x="380" y="112" text-anchor="middle" font-size="62" font-weight="600" fill="#3d5a3e" opacity="0.93">improvement</text>
+          <text x="178" y="192" text-anchor="middle" font-size="48" font-weight="500" fill="#2e4a2f" opacity="0.88">fun</text>
+          <text x="582" y="185" text-anchor="middle" font-size="44" font-weight="500" fill="#4a7a4b" opacity="0.88">encouraging</text>
 
           <!-- Tier 2 -->
-          <text x="380" y="228" text-anchor="middle" font-size="38" font-weight="500" fill="#6b8f6c" opacity="0.85">talented</text>
-          <text x="115" y="265" text-anchor="middle" font-size="34" font-weight="500" fill="#1e3d1f" opacity="0.85">recommend</text>
-          <text x="640" y="255" text-anchor="middle" font-size="34" font-weight="500" fill="#3d6640" opacity="0.85">improvement</text>
+          <text x="380" y="230" text-anchor="middle" font-size="36" font-weight="500" fill="#294d2a" opacity="0.85">highly recommend</text>
+          <text x="108" y="258" text-anchor="middle" font-size="32" font-weight="500" fill="#3d6640" opacity="0.84">patient</text>
+          <text x="660" y="248" text-anchor="middle" font-size="30" font-weight="500" fill="#1e3d1f" opacity="0.84">game-changer</text>
 
           <!-- Tier 3 -->
-          <text x="380" y="290" text-anchor="middle" font-size="30" font-weight="500" fill="#294d2a" opacity="0.82">by feel</text>
-          <text x="168" y="148" text-anchor="middle" font-size="27" font-weight="400" fill="#5a8a5c" opacity="0.80">learning</text>
-          <text x="590" y="130" text-anchor="middle" font-size="27" font-weight="400" fill="#3d7a3e" opacity="0.80">intuition</text>
-          <text x="100" y="320" text-anchor="middle" font-size="24" font-weight="400" fill="#2e5a30" opacity="0.78">skill</text>
-          <text x="655" y="310" text-anchor="middle" font-size="24" font-weight="400" fill="#4a6b4c" opacity="0.78">presence</text>
+          <text x="260" y="278" text-anchor="middle" font-size="26" font-weight="400" fill="#5a8a5c" opacity="0.81">accessible</text>
+          <text x="510" y="272" text-anchor="middle" font-size="26" font-weight="400" fill="#3d7a3e" opacity="0.81">mechanics</text>
+          <text x="380" y="300" text-anchor="middle" font-size="28" font-weight="400" fill="#6b8f6c" opacity="0.80">confidence</text>
 
           <!-- Tier 4 -->
-          <text x="258" y="335" text-anchor="middle" font-size="22" font-weight="400" fill="#6b8f6c" opacity="0.75">easy to learn</text>
-          <text x="510" y="338" text-anchor="middle" font-size="22" font-weight="400" fill="#3d5a3e" opacity="0.75">refreshing</text>
-          <text x="380" y="358" text-anchor="middle" font-size="20" font-weight="400" fill="#7a9e7b" opacity="0.72">balance</text>
-          <text x="150" y="358" text-anchor="middle" font-size="19" font-weight="400" fill="#4a7a4b" opacity="0.70">encouraging</text>
-          <text x="620" y="358" text-anchor="middle" font-size="19" font-weight="400" fill="#294d2a" opacity="0.70">personable</text>
+          <text x="118" y="308" text-anchor="middle" font-size="22" font-weight="400" fill="#2e5a30" opacity="0.77">knowledgeable</text>
+          <text x="648" y="300" text-anchor="middle" font-size="22" font-weight="400" fill="#4a6b4c" opacity="0.77">topspin</text>
+          <text x="200" y="334" text-anchor="middle" font-size="21" font-weight="400" fill="#3d5a3e" opacity="0.75">perceptive</text>
+          <text x="560" y="330" text-anchor="middle" font-size="21" font-weight="400" fill="#294d2a" opacity="0.75">engaging</text>
+          <text x="380" y="346" text-anchor="middle" font-size="23" font-weight="400" fill="#4a7a4b" opacity="0.76">clear feedback</text>
 
-          <!-- Tier 5 — smallest -->
-          <text x="68" y="185" text-anchor="middle" font-size="17" font-weight="400" fill="#8aaa8b" opacity="0.67">professional</text>
-          <text x="695" y="195" text-anchor="middle" font-size="17" font-weight="400" fill="#5a8a5c" opacity="0.67">outstanding</text>
-          <text x="52" y="130" text-anchor="middle" font-size="15" font-weight="400" fill="#6b8f6c" opacity="0.64">rare</text>
-          <text x="706" y="130" text-anchor="middle" font-size="15" font-weight="400" fill="#4a6b4c" opacity="0.64">care</text>
-          <text x="215" y="72" text-anchor="middle" font-size="15" font-weight="400" fill="#3d7a3e" opacity="0.64">joy</text>
-          <text x="540" y="68" text-anchor="middle" font-size="15" font-weight="400" fill="#2e5a30" opacity="0.64">kids</text>
-          <text x="380" y="52" text-anchor="middle" font-size="14" font-weight="400" fill="#8aaa8b" opacity="0.60">greatest teachers</text>
+          <!-- Tier 5 -->
+          <text x="88" y="352" text-anchor="middle" font-size="18" font-weight="400" fill="#6b8f6c" opacity="0.72">kids</text>
+          <text x="672" y="346" text-anchor="middle" font-size="18" font-weight="400" fill="#3d7a3e" opacity="0.72">simulator</text>
+          <text x="290" y="368" text-anchor="middle" font-size="18" font-weight="400" fill="#5a8a5c" opacity="0.70">body mechanics</text>
+          <text x="490" y="366" text-anchor="middle" font-size="18" font-weight="400" fill="#2e5a30" opacity="0.70">tailored</text>
+          <text x="380" y="390" text-anchor="middle" font-size="16" font-weight="400" fill="#7a9e7b" opacity="0.67">player-focused</text>
+
+          <!-- Tier 6 — smallest, atmosphere words -->
+          <text x="145" y="160" text-anchor="middle" font-size="19" font-weight="400" fill="#3d6640" opacity="0.72">tennis</text>
+          <text x="618" y="148" text-anchor="middle" font-size="19" font-weight="400" fill="#4a7a4b" opacity="0.72">pickleball</text>
+          <text x="56" y="200" text-anchor="middle" font-size="15" font-weight="400" fill="#8aaa8b" opacity="0.65">golf</text>
+          <text x="706" y="200" text-anchor="middle" font-size="15" font-weight="400" fill="#5a8a5c" opacity="0.65">efficient</text>
+          <text x="60" y="135" text-anchor="middle" font-size="14" font-weight="400" fill="#6b8f6c" opacity="0.62">exceptional</text>
+          <text x="700" y="130" text-anchor="middle" font-size="14" font-weight="400" fill="#3d5a3e" opacity="0.62">shot repertoire</text>
+          <text x="240" y="60" text-anchor="middle" font-size="15" font-weight="400" fill="#4a6b4c" opacity="0.62">instant results</text>
+          <text x="530" y="55" text-anchor="middle" font-size="15" font-weight="400" fill="#2e5a30" opacity="0.62">consistency</text>
+          <text x="380" y="46" text-anchor="middle" font-size="13" font-weight="400" fill="#8aaa8b" opacity="0.58">addictive</text>
         </g>
       </svg>
     </div>
 
-    <div class="reviews-coming">
-      <p class="rc-label">More on the way</p>
-      <p>Reviews are being gathered — check back soon. In the meantime, come hit some balls and write the next one yourself.</p>
+    <!-- REVIEW CARDS -->
+    <div class="review-cards">
+
+      <div class="review-card">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="review-sport-tag">Pickleball</span>
+        <p class="review-text">Tim is a great pickleball coach and in general an enthusiastic ambassador for the sport! He quickly assesses what I am doing and offers coaching that is accessible and I am able to put his suggestions into practice right away. He really understands body mechanics well and his style of coaching borrows from his vast tennis experience. I feel like he really understands where you are and what you need to hear to make immediate changes, improvement and have a blast while doing it all!</p>
+        <div class="review-byline">
+          <div class="review-avatar"><span>B</span></div>
+          <div>
+            <div class="review-name">Bronwyn Fargo</div>
+            <div class="review-meta">7 reviews · Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="review-sport-tag">Golf</span>
+        <p class="review-text">Tim is a fantastic instructor! As a beginner he helped me learn good habits, developed my swing, and also taught me how to process the swing analytics the simulator gives. He was also extremely patient and good at explaining concepts in terms a beginner could understand. Highly recommend!</p>
+        <div class="review-byline">
+          <div class="review-avatar"><span>S</span></div>
+          <div>
+            <div class="review-name">Sky Prensky</div>
+            <div class="review-meta">Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="review-sport-tag">Tennis</span>
+        <p class="review-text">Tim is an excellent tennis coach. He is known in the tennis community. He provides excellent coaching feedback for all levels of play. Clearly, I would recommend him to any serious tennis players.</p>
+        <div class="review-byline">
+          <div class="review-avatar"><span>D</span></div>
+          <div>
+            <div class="review-name">Dave White</div>
+            <div class="review-meta">7 reviews · Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="review-sport-tag">Tennis · Pickleball</span>
+        <p class="review-text">If you're looking to level up your game, Tim is the person to see. He's an exceptional player in both singles and doubles, which is rare to find. His movement is incredibly efficient, and his shot repertoire is deep — specifically his slices, which are a nightmare to deal with. He has a great eye for mechanics and has given me pointers that were game-changers. Highly recommend him for anyone that wants to improve their game!</p>
+        <div class="review-byline">
+          <div class="review-avatar"><span>J</span></div>
+          <div>
+            <div class="review-name">Joseph</div>
+            <div class="review-meta">Local Guide · 23 reviews · Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="review-sport-tag">Tennis</span>
+        <p class="review-text">I've been taking lessons with Tim for a while and have seen clear improvement in my game. What I really like is his flexible, player-focused approach. He lets me take the lead on what to focus on each session — sometimes we do targeted drills, other times we focus on match play. It keeps lessons engaging and tailored to what I actually need. Tim gives clear, practical feedback that's easy to apply, and I've noticed better consistency and more confidence during matches as a result.</p>
+        <div class="review-byline">
+          <div class="review-avatar"><span>A</span></div>
+          <div>
+            <div class="review-name">Alex Hung</div>
+            <div class="review-meta">Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="review-sport-tag">Tennis · Pickleball</span>
+        <p class="review-text">Tim's an awesome, friendly, skilled, &amp; communicative coach. He's perceptive &amp; positive in pointing out &amp; adjusting his coaching with the various skills I need to improve my game. Sessions with Tim are always great fun &amp; also challenging in a good way. I highly recommend him if you want to up level your game or see what incredible top spin can do 👊</p>
+        <div class="review-byline">
+          <div class="review-avatar"><span>M</span></div>
+          <div>
+            <div class="review-name">Max Montgomery</div>
+            <div class="review-meta">3 reviews · Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="review-sport-tag">Golf · Junior</span>
+        <p class="review-text">Awesome coach. My kid progressed a lot. Kids keep losing focus but not a problem for the coach. The simulator at Better Golf could help us analyze all details. The atmosphere, the people, other kids — we love it all. Best golf practice for our family.</p>
+        <div class="review-byline">
+          <div class="review-avatar"><span>A</span></div>
+          <div>
+            <div class="review-name">Abraham William</div>
+            <div class="review-meta">Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="review-sport-tag">Golf</span>
+        <p class="review-text">For both local golfers, and new golfers alike, Better Golf is a well needed addition to the Capitola Mall. The simulators are awesome — not only realistic, but informative, with all the stats of your game and nuances of whatever golf course you want to experience. Tim Handley is the golf pro and a super nice guy. He has helped my game considerably with the video, stats, and his thoughtful instruction. Careful, it's addictive!</p>
+        <div class="review-byline">
+          <div class="review-avatar"><span>J</span></div>
+          <div>
+            <div class="review-name">Jeff Hund</div>
+            <div class="review-meta">2 reviews · Google</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end review-cards -->
+
+    <div class="review-cta">
+      <p class="label">Share Your Experience</p>
+      <p>Played with Tim? Your words help the next player find their way to the court.</p>
+      <a href="https://g.page/r/YOUR_GOOGLE_REVIEW_LINK" target="_blank">Leave a Google Review</a>
     </div>
+
   </div>
 
   <!-- ── CLASSIFIED ── -->
@@ -935,7 +1176,6 @@
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + name).classList.add('active');
-    // find the nav button that matches
     document.querySelectorAll('nav button').forEach(b => {
       if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + name + "'")) {
         b.classList.add('active');
@@ -971,14 +1211,15 @@
       errorMsg.style.display = 'block';
     }
   });
+
   window.addEventListener('DOMContentLoaded', function() {
-  const hash = window.location.hash; // e.g., "#contact"
-  if (hash) {
-    const tabId = hash.replace('#', ''); // e.g., "contact"
-    const targetTab = document.querySelector(`[data-tab="${tabId}"]`);
-    if (targetTab) targetTab.click();
-  }
-});
+    const hash = window.location.hash;
+    if (hash) {
+      const tabId = hash.replace('#', '');
+      const targetTab = document.querySelector(`[data-tab="${tabId}"]`);
+      if (targetTab) targetTab.click();
+    }
+  });
 </script>
 </body>
 </html>
